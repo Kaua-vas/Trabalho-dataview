@@ -71,7 +71,7 @@ def reset_busca():
     st.rerun()
 
 # Botão Home funcional
-st.button("𖠿", on_click=reset_busca)
+st.button("𐤿", on_click=reset_busca)
 
 # Barra de seleção
 dep_nome = st.selectbox("Selecione o deputado", options=[""] + sorted(dep_keys), key="busca", index=0, placeholder="Digite o nome do deputado...")
@@ -84,7 +84,8 @@ if st.session_state.selecionado:
     nome = st.session_state.selecionado
     photo_url = f"https://www.camara.leg.br/internet/deputado/bandep/{dep_id}.jpg"
 
-    info_dep = df_geral[df_geral['id'] == dep_id].iloc[0]
+    df = df_geral[df_geral['id'] == dep_id].copy()
+    total_gasto_dep = df['valorDocumento'].sum()
 
     st.markdown(f"""
         <div class='deputado-header'>
@@ -93,11 +94,10 @@ if st.session_state.selecionado:
             </div>
             <div class='deputado-info'>
                 <h3>{nome}</h3>
+                <p><strong>Total gasto em {datetime.now().year}:</strong> R$ {total_gasto_dep:,.2f}</p>
             </div>
         </div>
     """, unsafe_allow_html=True)
-
-    df = df_geral[df_geral['id'] == dep_id].copy()
 
     if df.empty:
         st.warning("Nenhuma despesa encontrada para este deputado.")
