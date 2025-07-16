@@ -85,9 +85,7 @@ if st.session_state.selecionado:
     photo_url = f"https://www.camara.leg.br/internet/deputado/bandep/{dep_id}.jpg"
 
     info_dep = df_geral[df_geral['id'] == dep_id].iloc[0]
-    partido = info_dep.get("siglaPartido", "N/D")
-    gabinete = info_dep.get("gabinete", "N/D")
-
+    
     st.markdown(f"""
         <div class='deputado-header'>
             <div class='deputado-foto'>
