@@ -85,7 +85,7 @@ if st.session_state.selecionado:
     photo_url = f"https://www.camara.leg.br/internet/deputado/bandep/{dep_id}.jpg"
 
     info_dep = df_geral[df_geral['id'] == dep_id].iloc[0]
-    
+
     st.markdown(f"""
         <div class='deputado-header'>
             <div class='deputado-foto'>
@@ -93,7 +93,6 @@ if st.session_state.selecionado:
             </div>
             <div class='deputado-info'>
                 <h3>{nome}</h3>
-                <p style='color: gray;'>Partido: {partido} • Gabinete: {gabinete}</p>
             </div>
         </div>
     """, unsafe_allow_html=True)
